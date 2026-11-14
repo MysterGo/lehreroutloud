@@ -53,17 +53,29 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .ico{width:18px;height:18px;flex:none;color:#7b8ba1}
 [aria-pressed=true] .ico{color:currentColor}
 #btnKlasse[aria-pressed=true] .ico{color:var(--accent)}
+.lookwrap{position:relative;display:inline-flex}
+#btnLook .chev{opacity:.6;transition:transform .15s}#btnLook[aria-expanded=true]{background:var(--accent-soft);color:var(--accent)}#btnLook[aria-expanded=true] .chev{transform:rotate(180deg)}
+.pop{position:absolute;top:calc(100% + 8px);left:0;z-index:40;width:236px;max-width:calc(100vw - 32px);background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px -14px rgba(20,35,70,.4);padding:12px;display:flex;flex-direction:column;gap:8px}
+.pop[hidden]{display:none}
+.poph{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.pop .seg{align-self:flex-start}
+.looklist{display:flex;flex-direction:column;gap:2px}
+.looklist button{display:flex;align-items:center;gap:10px;border:0;border-radius:9px;padding:7px 9px;text-align:left;background:none;font-weight:600;font-size:14.5px;color:var(--ink)}
+.looklist button:hover{background:var(--soft)}
+.looklist button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)}
+.sw{width:22px;height:22px;border-radius:6px;border:1px solid rgba(0,0,0,.12);flex:none}
+.pop .bonus{align-self:stretch;justify-content:center;margin-top:2px}
 .seglabel{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .layout{display:flex;gap:16px;align-items:flex-start;justify-content:center}
 .roomcol{flex:0 1 auto;min-width:0;max-width:100%}
 .side{flex:0 0 350px;width:350px;box-sizing:border-box;position:sticky;top:max(12px,env(safe-area-inset-top,0px));max-height:calc(100vh - 24px);overflow:auto}
-@media (max-width:980px){.layout{flex-direction:column;align-items:stretch}.side{flex:none;width:auto;position:static;max-height:none}.roomcol{width:100%}}
+@media (max-width:980px){.layout{flex-direction:column;align-items:stretch}.side{flex:none;width:auto;position:static;max-height:none}.roomcol{display:contents!important}.roomcol>.nav{order:0}.layout>.side{order:1}.roomcol>.card{order:2}}
 .card{background:var(--surface);border-radius:16px;padding:14px;box-shadow:0 1px 2px rgba(20,40,70,.06),0 14px 34px -20px rgba(20,40,70,.3);min-width:0;display:flex;flex-direction:column;gap:12px}
 .room{align-items:center}
-.roombar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;width:100%;position:sticky;bottom:env(safe-area-inset-bottom,0px);background:var(--surface);padding-block:8px 2px;z-index:2}
+.roombar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;width:100%;background:var(--surface);padding-block:0 10px}
 .roomcol{display:flex;flex-direction:column;gap:10px}
 .roomscroll{overflow:auto;max-width:100%;border-radius:8px}
-@media (max-width:600px){.roombar{position:static;padding-top:2px}.roombar .seg{gap:1px}.roombar .seg.small{flex-wrap:nowrap;overflow-x:auto;max-width:100%;box-sizing:border-box}.roombar .seg.small button{padding:5px 5px;font-size:12.5px;white-space:nowrap}.roombar .seglabel{display:none}.gw .overlay{overflow:auto;place-items:start center;padding-block:8px}.gw .overlay>*{font-size:14px}.zoom{top:6px;right:6px;transform:scale(.78);transform-origin:top right}}
+@media (max-width:600px){.roombar{padding-bottom:8px}.roombar .seg{gap:1px}.roombar .seg.small{flex-wrap:nowrap;overflow-x:auto;max-width:100%;box-sizing:border-box}.roombar .seg.small button{padding:5px 5px;font-size:12.5px;white-space:nowrap}.roombar .seglabel{display:none}.gw .overlay{overflow:auto;place-items:start center;padding-block:8px}.gw .overlay>*{font-size:14px}.zoom{top:6px;right:6px;transform:scale(.78);transform-origin:top right}}
 .roomframe{position:relative;max-width:100%}
 .zoom{position:absolute;top:10px;right:10px;z-index:3;display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:11px;padding:3px;background:rgba(255,255,255,.92);box-shadow:0 4px 14px -6px rgba(20,40,70,.35)}
 .seg.small button{padding:5px 10px;font-size:13px}
@@ -146,6 +158,14 @@ section{display:flex;flex-direction:column;gap:9px}
 .studlist{max-height:240px;overflow:auto;border:1px solid var(--line);border-radius:10px}
 .studlist div{display:flex;justify-content:space-between;align-items:center;padding:5px 6px 5px 11px;border-bottom:1px solid #edf0f4}
 .studlist div:last-child{border-bottom:0}
+.studlist div span{flex:1;min-width:0}
+.gbtn{min-width:40px;padding:2px 8px!important;margin-right:4px;border-radius:999px!important;font-size:12.5px!important;font-weight:800;border:1px solid var(--line)!important;color:var(--muted)!important;background:var(--surface)!important}
+.gbtn.g-m{background:#e4ecf8!important;border-color:#b8cbea!important;color:#2a5cad!important}
+.gbtn.g-w{background:#fbe9e4!important;border-color:#efc3b6!important;color:#b5462a!important}
+.altrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;font-weight:600}
+.altrow input{width:18px;height:18px;accent-color:var(--accent)}
+.altrow .hint{font-weight:500}
+.altrow.bad{color:#b5462a}
 .studlist button{padding:2px 9px;border:0;color:var(--muted);font-size:18px;line-height:1;background:none}
 .studlist button:hover{color:var(--warn)}
 details{border-top:1px solid var(--line);padding-top:10px}
@@ -258,12 +278,56 @@ details[open] summary{margin-bottom:10px}
   <div class="layout" id="layout">
     <div class="roomcol" id="roomCol">
       <nav class="seg nav" aria-label="Bereiche">
-        <button data-panel="plan"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="3" rx="1"/><rect x="4" y="10" width="6" height="4" rx="1"/><rect x="14" y="10" width="6" height="4" rx="1"/><rect x="4" y="17" width="6" height="4" rx="1"/><rect x="14" y="17" width="6" height="4" rx="1"/></svg>Schüler verteilen</button>
-        <button data-panel="tische"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18M9.5 5.5 12 3l2.5 2.5M9.5 18.5 12 21l2.5-2.5M5.5 9.5 3 12l2.5 2.5M18.5 9.5 21 12l-2.5 2.5"/></svg>Tische verteilen</button>
+        <button data-panel="tische"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18M9.5 5.5 12 3l2.5 2.5M9.5 18.5 12 21l2.5-2.5M5.5 9.5 3 12l2.5 2.5M18.5 9.5 21 12l-2.5 2.5"/></svg>Tischordnung</button>
+        <button data-panel="plan"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="3" rx="1"/><rect x="4" y="10" width="6" height="4" rx="1"/><rect x="14" y="10" width="6" height="4" rx="1"/><rect x="4" y="17" width="6" height="4" rx="1"/><rect x="14" y="17" width="6" height="4" rx="1"/></svg>Schüler:innen verteilen</button>
+        <div class="lookwrap">
+          <button id="btnLook" aria-haspopup="true" aria-expanded="false" aria-controls="lookPop"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5c0-4.1-4-7.6-9-7.6z"/><circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="10" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>Look<svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="pop" id="lookPop" hidden>
+            <div class="poph">Ansicht</div>
+            <div class="seg small" role="group" aria-label="Perspektive">
+              <button id="viewS">Schülersicht</button>
+              <button id="viewL">Lehrersicht</button>
+            </div>
+            <div class="poph">Look</div>
+            <div class="looklist" role="group" aria-label="Look">
+              <button data-look="modern"><span class="sw" style="background:linear-gradient(135deg,#f1dfbd 50%,#cfdcf0 50%)"></span>Modern</button>
+              <button data-look="schlicht"><span class="sw" style="background:linear-gradient(135deg,#fff 50%,#222 50%)"></span>Schlicht</button>
+              <button data-look="fach"><span class="sw" style="background:linear-gradient(135deg,#e8edf2 50%,#3d8a5c 50%)"></span>Fachraum</button>
+              <button data-look="custom"><span class="sw" style="background:conic-gradient(#e94e4e,#f2b632,#4cb050,#3d8fd9,#9d6bff,#e94e4e)"></span>Eigene</button>
+              <button data-look="disco"><span class="sw" style="background:linear-gradient(135deg,#ff2bd6,#3b1a7a 55%,#00e5ff)"></span>Disco</button>
+            </div>
+            <button class="bonus" id="btnBonus" hidden title="Geheimes Bonus-Spiel">✦ Bonus-Spiel</button>
+          </div>
+        </div>
         <button data-panel="lose"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="11" rx="2.5"/><circle cx="6.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.5" cy="10.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="17" cy="13" r="2.3"/><path d="M12.5 21c0-2.6 2-4.6 4.5-4.6s4.5 2 4.5 4.6"/></svg>Losen &amp; Gruppen</button>
+        <button data-panel="spiel"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 3 10.5l7 2.5 2.5 7z"/><path d="M21 3 10 13"/></svg>Minispiel</button>
         <button data-panel="export"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg>Export</button>
       </nav>
       <div class="card room">
+        <div class="custom" id="customPanel" hidden>
+          <div class="cgrid">
+            <div class="cfield"><span>Tische</span><input type="color" data-c="table" aria-label="Farbe Tische"><select data-c="tableMat" aria-label="Material"><option value="holz">Holz</option><option value="glatt">Glatt</option><option value="metall">Metall</option><option value="marmor">Marmor</option></select></div>
+            <div class="cfield"><span>Stühle</span><input type="color" data-c="chair" aria-label="Farbe Stühle"><select data-c="chairMat" aria-label="Material"><option value="kunststoff">Kunststoff</option><option value="holz">Holz</option><option value="stoff">Stoff</option></select></div>
+            <div class="cfield"><span>Boden</span><input type="color" data-c="floor" aria-label="Farbe Boden"><select data-c="floorMat" aria-label="Material"><option value="linoleum">Linoleum</option><option value="parkett">Parkett</option><option value="teppich">Teppich</option><option value="fliesen">Fliesen</option><option value="beton">Beton</option></select></div>
+            <div class="cfield"><span>Tafel</span><input type="color" data-c="board" aria-label="Farbe Tafel"><select data-c="boardType" aria-label="Material"><option value="kreide">Kreidetafel</option><option value="digital">Digitaltafel</option><option value="whiteboard">Whiteboard</option></select></div>
+            <div class="cfield"><span>Wand</span><input type="color" data-c="wall" aria-label="Farbe Wand"><select data-c="wallMat" aria-label="Material"><option value="putz">Putz</option><option value="klinker">Klinker</option></select></div>
+          </div>
+          <div class="row" style="gap:6px"><span class="seglabel">Extras</span>
+            <button class="fxb" data-fx="blumen">Blumen</button>
+            <button class="fxb" data-fx="weihnacht">Weihnachtsdeko</button>
+            <button class="fxb" data-fx="hefte">Hefte &amp; Bücher</button>
+            <button class="fxb" data-fx="ipads">iPads</button>
+            <button class="fxb" data-fx="grusel">Grusel</button>
+            <button class="fxb" data-fx="lehrer">Lehrkraft</button>
+            <span class="seg small" id="teachSeg" hidden><button data-teach="w">Lehrerin</button><button data-teach="m">Lehrer</button></span>
+            <button class="fxb" data-fx="kids">Schüler:innen</button>
+            <button class="fxb" data-fx="hund">Klassenhund</button>
+            <button class="fxb" data-fx="eimer">Papierkorb</button>
+            <button class="fxb" data-fx="besen">Besen</button>
+            <button class="fxb" data-fx="chaos">Chaos</button>
+            <button class="link" id="customReset" style="margin-left:auto">Zurücksetzen</button>
+          </div>
+        </div>
         <div class="roomframe">
         <div class="zoom" role="group" aria-label="Zoom">
           <button id="zoomOut" aria-label="Verkleinern">−</button>
@@ -334,46 +398,7 @@ details[open] summary{margin-bottom:10px}
         </svg>
         </div>
         </div>
-        <div class="roombar">
-          <div class="seg small" role="group" aria-label="Perspektive">
-            <button id="viewS">Schülersicht</button>
-            <button id="viewL">Lehrersicht</button>
-          </div>
-          <div class="row" style="gap:6px"><span class="seglabel">Look</span>
-            <div class="seg small" role="group" aria-label="Look">
-              <button data-look="modern">Modern</button>
-              <button data-look="schlicht">Schlicht</button>
-              <button data-look="fach">Fachraum</button>
-              <button data-look="custom">Eigene</button>
-              <button data-look="disco">Disco</button>
-            </div>
-          </div>
-          <button class="bonus" id="btnBonus" hidden title="Geheimes Bonus-Spiel">✦ Bonus-Spiel</button>
-        </div>
-        <div class="custom" id="customPanel" hidden>
-          <div class="cgrid">
-            <div class="cfield"><span>Tische</span><input type="color" data-c="table" aria-label="Farbe Tische"><select data-c="tableMat" aria-label="Material"><option value="holz">Holz</option><option value="glatt">Glatt</option><option value="metall">Metall</option><option value="marmor">Marmor</option></select></div>
-            <div class="cfield"><span>Stühle</span><input type="color" data-c="chair" aria-label="Farbe Stühle"><select data-c="chairMat" aria-label="Material"><option value="kunststoff">Kunststoff</option><option value="holz">Holz</option><option value="stoff">Stoff</option></select></div>
-            <div class="cfield"><span>Boden</span><input type="color" data-c="floor" aria-label="Farbe Boden"><select data-c="floorMat" aria-label="Material"><option value="linoleum">Linoleum</option><option value="parkett">Parkett</option><option value="teppich">Teppich</option><option value="fliesen">Fliesen</option><option value="beton">Beton</option></select></div>
-            <div class="cfield"><span>Tafel</span><input type="color" data-c="board" aria-label="Farbe Tafel"><select data-c="boardType" aria-label="Material"><option value="kreide">Kreidetafel</option><option value="digital">Digitaltafel</option><option value="whiteboard">Whiteboard</option></select></div>
-            <div class="cfield"><span>Wand</span><input type="color" data-c="wall" aria-label="Farbe Wand"><select data-c="wallMat" aria-label="Material"><option value="putz">Putz</option><option value="klinker">Klinker</option></select></div>
-          </div>
-          <div class="row" style="gap:6px"><span class="seglabel">Extras</span>
-            <button class="fxb" data-fx="blumen">Blumen</button>
-            <button class="fxb" data-fx="weihnacht">Weihnachtsdeko</button>
-            <button class="fxb" data-fx="hefte">Hefte &amp; Bücher</button>
-            <button class="fxb" data-fx="ipads">iPads</button>
-            <button class="fxb" data-fx="grusel">Grusel</button>
-            <button class="fxb" data-fx="lehrer">Lehrkraft</button>
-            <span class="seg small" id="teachSeg" hidden><button data-teach="w">Lehrerin</button><button data-teach="m">Lehrer</button></span>
-            <button class="fxb" data-fx="kids">Schüler:innen</button>
-            <button class="fxb" data-fx="hund">Klassenhund</button>
-            <button class="fxb" data-fx="eimer">Papierkorb</button>
-            <button class="fxb" data-fx="besen">Besen</button>
-            <button class="fxb" data-fx="chaos">Chaos</button>
-            <button class="link" id="customReset" style="margin-left:auto">Zurücksetzen</button>
-          </div>
-        </div>
+
       </div>
       <div class="card gw" id="gameCard" hidden>
         <div class="hud" aria-live="polite">
@@ -455,6 +480,8 @@ Finja</textarea>
           <div class="rules" id="ruleList"></div>
           <div class="rulerow"><select id="ruleA" aria-label="Schüler A"></select><span>nicht neben</span><select id="ruleB" aria-label="Schüler B"></select><button id="ruleAddApart" aria-label="Regel hinzufügen">+</button></div>
           <div class="rulerow"><select id="ruleF" aria-label="Schüler"></select><button id="ruleAddFront">muss nach vorne</button></div>
+          <label class="altrow" id="altRow"><input type="checkbox" id="ruleAlt"> m/w im Wechsel <span class="hint" id="altInfo"></span></label>
+          <button class="link" id="btnSetG" style="align-self:flex-start">Geschlecht festlegen …</button>
           <p class="hint">Gilt beim zufälligen Verteilen. „Vorne“ ist die Reihe an der Tafel, „nebeneinander“ heißt am selben Tisch oder am Tisch direkt daneben.</p>
         </section>
         <section>
@@ -465,7 +492,7 @@ Finja</textarea>
       </div>
 
       <div class="pane" id="pane-tische" hidden>
-        <h2>Tische verteilen</h2>
+        <h2>Tischordnung</h2>
         <p class="hint">Tische im Raum ziehen. Auf freiem Boden ein Feld aufziehen markiert mehrere. Zu Wänden und Fenstern bleibt immer ein Gang frei.</p>
         <section>
           <h3>1 · Anzahl Tische</h3>
@@ -515,8 +542,8 @@ Finja</textarea>
       </div>
 
       <div class="pane" id="pane-spiel" hidden>
-        <button id="btnBackRoom">← Zurück zur Disco</button>
-        <h2>Bonus: Papierflieger-Zielwurf</h2>
+        <button id="btnBackRoom">← Zurück zum Plan</button>
+        <h2>Papierflieger-Zielwurf</h2>
         <p class="hint">Flieger aus der eigenen Bank in den Papierkorb werfen: vom Flieger nach hinten ziehen und loslassen. Im Wettkampf spielen die Schüler einer Klasse gegeneinander.</p>
         <div class="toggles" id="pf_toggles" role="group" aria-label="Einstellungen">
     <button class="tg" data-set="comp"><i></i>Wettkampf</button>
@@ -587,8 +614,8 @@ Finja</textarea>
           <h3>Aktuelle Klasse</h3>
           <label class="hint" for="klassName">Name</label>
           <input type="text" id="klassName">
-          <label class="hint" for="newNames">Namen hinzufügen: einer pro Zeile, oder eine Spalte aus Excel hineinkopieren</label>
-          <textarea id="newNames" rows="4" placeholder="Mia Schmidt&#10;Tom Becker"></textarea>
+          <label class="hint" for="newNames">Namen hinzufügen: einer pro Zeile, oder eine Spalte aus Excel hineinkopieren. Mit „(m)“ oder „(w)“ dahinter ist das Geschlecht gleich gesetzt.</label>
+          <textarea id="newNames" rows="4" placeholder="Mia Schmidt (w)&#10;Tom Becker (m)"></textarea>
           <div class="row"><button id="btnAddNames">Hinzufügen</button><label class="hint" for="csvNames" style="flex:1">oder Liste laden (Excel als CSV, .txt):</label></div>
           <input type="file" id="csvNames" accept=".csv,.txt,text/csv,text/plain">
           <div class="studlist" id="studlist"></div>
@@ -700,7 +727,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 function cur(){return S.classes.find(c=>c.id===S.current)||S.classes[0];}
 function seatKeys(c){const k=[];c.tables.forEach(t=>DIM[t.type].seats.forEach((_,i)=>k.push(t.id+':'+i)));return k;}
 function clean(c){
-  c.students=c.students||[];c.tables=(c.tables||[]).filter(t=>DIM[t.type]);c.seats=c.seats||{};c.locked=c.locked||[];c.picked=c.picked||[];c.groups=c.groups||[];c.gsize=c.gsize||4;c.rules=c.rules&&typeof c.rules==='object'?c.rules:{};c.rules.apart=Array.isArray(c.rules.apart)?c.rules.apart:[];c.rules.front=Array.isArray(c.rules.front)?c.rules.front:[];c.favs=Array.isArray(c.favs)?c.favs.filter(Boolean).slice(0,2):[];while(c.favs.length<2)c.favs.push(null);
+  c.students=c.students||[];c.tables=(c.tables||[]).filter(t=>DIM[t.type]);c.seats=c.seats||{};c.locked=c.locked||[];c.picked=c.picked||[];c.groups=c.groups||[];c.gsize=c.gsize||4;c.rules=c.rules&&typeof c.rules==='object'?c.rules:{};c.rules.apart=Array.isArray(c.rules.apart)?c.rules.apart:[];c.rules.front=Array.isArray(c.rules.front)?c.rules.front:[];c.rules.alt=!!c.rules.alt;c.favs=Array.isArray(c.favs)?c.favs.filter(Boolean).slice(0,2):[];while(c.favs.length<2)c.favs.push(null);
   if(c.template&&!validTpl(c.template))c.template=null;
   const keys=new Set(seatKeys(c)),ids=new Set(c.students.map(s=>s.id)),seen=new Set();
   for(const k of Object.keys(c.seats)){const v=c.seats[k];if(!keys.has(k)||!ids.has(v)||seen.has(v))delete c.seats[k];else seen.add(v);}
@@ -857,7 +884,9 @@ function ruleGeo(c){
   let front=new Set(keys.filter(k=>pos[k]&&pos[k].y<=minY+100));
   if(front.size<nf)front=new Set([...keys].sort((a,b)=>pos[a].y-pos[b].y).slice(0,nf));
   const near=(a,b)=>{const p=pos[a],q=pos[b];if(!p||!q)return false;if(a.split(':')[0]===b.split(':')[0])return true;return Math.hypot(p.x-q.x,p.y-q.y)<=175;};
-  return{front,near};
+  const pairs=[];for(let i=0;i<keys.length;i++)for(let j=i+1;j<keys.length;j++)if(near(keys[i],keys[j]))pairs.push([keys[i],keys[j]]);
+  const rows=[...keys].filter(k=>pos[k]).sort((a,b)=>Math.round(pos[a].y/100)-Math.round(pos[b].y/100)||pos[a].x-pos[b].x);
+  return{front,near,pairs,pos,rows};
 }
 function ruleBreaks(c,seats,geo){
   geo=geo||ruleGeo(c);const where={};for(const k in seats)where[seats[k]]=k;let n=0;
@@ -865,11 +894,24 @@ function ruleBreaks(c,seats,geo){
   (c.rules.front||[]).forEach(id=>{if(where[id]&&!geo.front.has(where[id]))n++;});
   return n;
 }
+function altBreaks(c,seats,geo,gmap){
+  if(!c.rules.alt)return 0;geo=geo||ruleGeo(c);gmap=gmap||Object.fromEntries(c.students.map(s=>[s.id,s.g||'']));let n=0;
+  for(const [a,b] of geo.pairs){const x=gmap[seats[a]],y=gmap[seats[b]];if(x&&x===y)n++;}return n;
+}
+// kleinstmögliche Zahl gleicher Nachbarn, wenn eine Gruppe größer ist
+function altMin(c,geo){
+  const m=c.students.filter(s=>s.g==='m').length,w=c.students.filter(s=>s.g==='w').length;return Math.max(0,Math.abs(m-w)-1);
+}
 function renderRules(c){
   const opts=[...c.students].sort((a,b)=>a.name.localeCompare(b.name,'de')).map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');
   ['ruleA','ruleB','ruleF'].forEach(id=>{const el=$(id),v=el.value;el.innerHTML='<option value="">Name …</option>'+opts;if(v&&student(c,v))el.value=v;});
   const geo=ruleGeo(c),where={};for(const k in c.seats)where[c.seats[k]]=k;
   const nm=id=>esc((student(c,id)||{}).name||'?');
+  const nM=c.students.filter(s=>s.g==='m').length,nW=c.students.filter(s=>s.g==='w').length,nX=c.students.length-nM-nW;
+  $('ruleAlt').checked=!!c.rules.alt;
+  const ab=c.rules.alt?altBreaks(c,c.seats,geo):0;
+  $('altInfo').textContent=`(${nM} m · ${nW} w${nX?` · ${nX} ohne Angabe`:''})`+(c.rules.alt&&ab?` – ${ab}× sitzen gleiche nebeneinander`:'');
+  $('altRow').classList.toggle('bad',!!(c.rules.alt&&ab>altMin(c,geo)));
   $('ruleList').innerHTML=c.rules.apart.map(([a,b],i)=>{const bad=where[a]&&where[b]&&geo.near(where[a],where[b]);return `<div class="rule${bad?' bad':''}"><span>${nm(a)} <i>nicht neben</i> ${nm(b)}</span><button class="x" data-rdel="a${i}" aria-label="Regel löschen">×</button></div>`;}).join('')
     +c.rules.front.map((id,i)=>{const bad=where[id]&&!geo.front.has(where[id]);return `<div class="rule${bad?' bad':''}"><span>${nm(id)} <i>muss nach vorne</i></span><button class="x" data-rdel="f${i}" aria-label="Regel löschen">×</button></div>`;}).join('');
 }
@@ -878,18 +920,39 @@ function randomize(c){
   const keep={};c.locked.forEach(id=>{const k=seatOf(c,id);if(k)keep[k]=id;});
   const kept=new Set(Object.values(keep)),free=seatKeys(c).filter(k=>!keep[k]),pool=c.students.filter(s=>!kept.has(s.id)).map(s=>s.id);
   if(pool.length>free.length)return false;
-  const hasRules=(c.rules.apart.length+c.rules.front.length)>0,geo=hasRules?ruleGeo(c):null;
-  let best=null,bestN=1e9;
-  for(let t=0;t<(hasRules?600:1);t++){
-    const seats={...keep},f=shuffle([...free]),pl=shuffle([...pool]);
-    if(hasRules){const fr=new Set(c.rules.front),ff=f.filter(k=>geo.front.has(k)),rest=f.filter(k=>!geo.front.has(k));
-      const first=pl.filter(id=>fr.has(id)),others=pl.filter(id=>!fr.has(id)),order=[...ff,...rest];
-      [...first,...others].forEach((id,i)=>{seats[order[i]]=id;});}
-    else pl.forEach((id,i)=>{seats[f[i]]=id;});
-    const n=hasRules?ruleBreaks(c,seats,geo):0;
-    if(n<bestN){best=seats;bestN=n;}if(n===0)break;
+  const alt=!!c.rules.alt,hasRules=(c.rules.apart.length+c.rules.front.length)>0||alt,geo=hasRules?ruleGeo(c):null;
+  if(!hasRules){const seats={...keep},f=shuffle([...free]);shuffle([...pool]).forEach((id,i)=>{seats[f[i]]=id;});c.seats=seats;c.lastBreaks=0;c.lastAlt=0;return true;}
+  const gmap=Object.fromEntries(c.students.map(s=>[s.id,s.g||'']));
+  const cost=st=>ruleBreaks(c,st,geo)*100+(alt?altBreaks(c,st,geo,gmap):0);
+  const freeSet=new Set(free),fr=new Set(c.rules.front);
+  let best=null,bestC=1e9;
+  for(let t=0;t<40&&bestC>0;t++){
+    let seats={...keep};
+    if(alt){
+      // Reihen durchgehen und abwechselnd m/w setzen
+      const pm=shuffle(pool.filter(id=>gmap[id]==='m')),pw=shuffle(pool.filter(id=>gmap[id]==='w')),px=shuffle(pool.filter(id=>!gmap[id]));
+      let flip=Math.random()<.5,last=null,lastY=null;const left=[];
+      geo.rows.forEach(k=>{const y=Math.round(geo.pos[k].y/100);if(y!==lastY){lastY=y;last=null;}
+        if(!freeSet.has(k)){last=gmap[seats[k]]||null;return;}
+        let want=last==='m'?'w':last==='w'?'m':(flip?'m':'w');const src=want==='m'?pm:pw,oth=want==='m'?pw:pm;
+        const id=src.length?src.pop():(px.length?px.pop():oth.pop());if(id){seats[k]=id;last=gmap[id]||null;}else left.push(k);});
+      [...pm,...pw,...px].forEach(id=>{const k=free.find(k=>!seats[k]);if(k)seats[k]=id;});
+    }else{
+      const f=shuffle([...free]),pl=shuffle([...pool]),ff=f.filter(k=>geo.front.has(k)),rest=f.filter(k=>!geo.front.has(k));
+      const order=[...ff,...rest];[...pl.filter(id=>fr.has(id)),...pl.filter(id=>!fr.has(id))].forEach((id,i)=>{seats[order[i]]=id;});
+    }
+    // Feinschliff: Plätze tauschen, solange es nicht schlechter wird
+    let cur=cost(seats);
+    for(let i=0;i<2500&&cur>0;i++){
+      const a=free[Math.floor(Math.random()*free.length)],b=free[Math.floor(Math.random()*free.length)];
+      if(a===b||(!seats[a]&&!seats[b]))continue;
+      const sa=seats[a],sb=seats[b];if(sb)seats[a]=sb;else delete seats[a];if(sa)seats[b]=sa;else delete seats[b];
+      const n=cost(seats);if(n<=cur)cur=n;else{if(sa)seats[a]=sa;else delete seats[a];if(sb)seats[b]=sb;else delete seats[b];}
+    }
+    if(cur<bestC){best={...seats};bestC=cur;}
+    if(alt&&bestC<=altMin(c,geo)&&ruleBreaks(c,best,geo)===0)break;
   }
-  c.seats=best;c.lastBreaks=bestN;return true;
+  c.seats=best;c.lastBreaks=ruleBreaks(c,best,geo);c.lastAlt=alt?altBreaks(c,best,geo,gmap):0;return true;
 }
 function makeGroups(c,size){
   const ids=shuffle(c.students.map(s=>s.id)),n=ids.length;if(!n)return[];
@@ -1006,6 +1069,7 @@ function tableSVG(t,c,gm){
     if(st){const lb=short(st.name),fit=lb.length*12.2>sw-16?` textLength="${sw-16}" lengthAdjust="spacingAndGlyphs"`:'';
       s+=`<text class="nm" x="${sx}" y="8" text-anchor="middle"${fit} transform="rotate(${tr} ${sx} 0)">${esc(lb)}</text>`;
       if(c.locked.includes(sid))s+=lockSVG(sx+sw/2-17,-hd+17);
+      if(c.rules&&c.rules.alt&&st.g){const gx=sx+sw/2-15,gy=hd-15;s+=`<g class="gmark"><circle cx="${gx}" cy="${gy}" r="9" fill="${st.g==='m'?'#2a5cad':'#c2552f'}" opacity=".9"/><text x="${gx}" y="${gy+4}" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" transform="rotate(${tr} ${gx} ${gy})">${st.g}</text></g>`;}
       if(gm[sid]!==undefined)s+=gDot(sx-sw/2+18,-hd+18,gm[sid],tr);}
     else s+=`<text class="nm free" x="${sx}" y="6" text-anchor="middle" transform="rotate(${tr} ${sx} 0)">frei</text>`;
     s+=`<rect class="seat-hit${st?'':' empty'}" data-seat="${key}" x="${sx-sw/2+4}" y="${-hd+4}" width="${sw-8}" height="${D.d+CH-8}" rx="8">${st?`<title>${esc(st.name)}</title>`:''}</rect>`;
@@ -1418,7 +1482,7 @@ function renderPanel(){
   [...expOff].forEach(id=>{if(!S.classes.find(k=>k.id===id))expOff.delete(id);});
   $('expClasses').innerHTML=S.classes.map(k=>`<label><input type="checkbox" data-cid="${k.id}"${expOff.has(k.id)?'':' checked'}>${esc(k.name)}<small>${k.students.length} Schüler</small></label>`).join('');
   $('backupInfo').textContent=S.lastBackup?`Letzte Sicherung: ${new Date(S.lastBackup).toLocaleDateString('de-DE')}`:'Noch keine Sicherung gemacht.';
-  $('studlist').innerHTML=c.students.length?[...c.students].sort((a,b)=>a.name.localeCompare(b.name,'de')).map(s=>`<div><span>${esc(s.name)}</span><button data-del="${s.id}" aria-label="${esc(s.name)} entfernen">×</button></div>`).join(''):'<div><span class="hint">Noch keine Namen.</span></div>';
+  $('studlist').innerHTML=c.students.length?[...c.students].sort((a,b)=>a.name.localeCompare(b.name,'de')).map(s=>`<div><span>${esc(s.name)}</span><button class="gbtn g-${s.g||'x'}" data-g="${s.id}" title="Geschlecht: antippen zum Wechseln" aria-label="Geschlecht von ${esc(s.name)}: ${s.g==='m'?'männlich':s.g==='w'?'weiblich':'nicht gesetzt'}">${s.g||'m/w'}</button><button data-del="${s.id}" aria-label="${esc(s.name)} entfernen">×</button></div>`).join(''):'<div><span class="hint">Noch keine Namen.</span></div>';
   const trashIc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 12.5h9l1-12.5M10 11v5.5M14 11v5.5"/></svg>';
   $('classList').innerHTML=S.classes.map(k=>{
     if(delAsk===k.id)return `<div class="citem ask"><span class="grow">„${esc(k.name)}“ mit allen Namen und Plänen löschen?</span><button class="danger" data-cdel-yes="${k.id}">Löschen</button><button data-cdel-no="1">Abbrechen</button></div>`;
@@ -1521,8 +1585,15 @@ document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>setPanel(b.da
 $('ruleAddApart').onclick=()=>{const c=cur(),a=$('ruleA').value,b=$('ruleB').value;if(!a||!b||a===b){toast('Bitte zwei verschiedene Namen wählen.');return;}
   if(c.rules.apart.some(([x,y])=>(x===a&&y===b)||(x===b&&y===a))){toast('Diese Regel gibt es schon.');return;}c.rules.apart.push([a,b]);$('ruleA').value='';$('ruleB').value='';commit();};
 $('ruleAddFront').onclick=()=>{const c=cur(),f=$('ruleF').value;if(!f){toast('Bitte einen Namen wählen.');return;}if(!c.rules.front.includes(f))c.rules.front.push(f);$('ruleF').value='';commit();};
+$('ruleAlt').onchange=e=>{const c=cur();c.rules.alt=e.target.checked;if(c.rules.alt&&!c.students.some(s=>s.g))toast('Lege zuerst bei „Klassen“ fest, wer m und wer w ist.');commit();};
+$('btnSetG').onclick=()=>setPanel('klasse');
 $('ruleList').onclick=e=>{const b=e.target.closest('[data-rdel]');if(!b)return;const c=cur(),k=b.dataset.rdel,i=+k.slice(1);if(k[0]==='a')c.rules.apart.splice(i,1);else c.rules.front.splice(i,1);commit();};
-$('btnBonus').onclick=()=>setPanel('spiel');$('btnBackRoom').onclick=()=>setPanel('plan');
+function placePop(){const p=$('lookPop');p.style.left='0px';const r=p.getBoundingClientRect(),vw=document.documentElement.clientWidth;if(r.right>vw-12)p.style.left=Math.round(vw-12-r.right)+'px';}
+function lookOpen(o){$('lookPop').hidden=!o;$('btnLook').setAttribute('aria-expanded',String(o));if(o)placePop();}
+$('btnLook').onclick=e=>{e.stopPropagation();lookOpen($('lookPop').hidden);};
+document.addEventListener('click',e=>{if(!$('lookPop').hidden&&!e.target.closest('.lookwrap'))lookOpen(false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('lookPop').hidden){lookOpen(false);$('btnLook').focus();}});
+$('btnBonus').onclick=()=>{lookOpen(false);setPanel('spiel');};$('btnBackRoom').onclick=()=>setPanel('plan');
 document.querySelectorAll('[data-look]').forEach(b=>b.onclick=()=>{S.look=b.dataset.look;commit();});
 $('zoomIn').onclick=()=>setZoom((S.zoom||1)+0.1);
 $('zoomOut').onclick=()=>setZoom((S.zoom||1)-0.1);
@@ -1540,9 +1611,9 @@ $('btnNewClass').onclick=newClass;
 $('newClassName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();newClass();}});
 $('klassName').oninput=e=>{cur().name=e.target.value||'Ohne Namen';save();renderRoom();$('sideTitle').textContent=cur().name;const o=$('classSel').selectedOptions[0];if(o)o.textContent=cur().name;};
 $('btnAddNames').onclick=()=>{const c=cur(),names=$('newNames').value.split(/[\n;]+/).map(s=>s.trim()).filter(Boolean);
-  if(!names.length){toast('Keine Namen gefunden.');return;}names.forEach(n=>c.students.push({id:uid(),name:n}));$('newNames').value='';commit();toast(`${names.length} Namen hinzugefügt.`);};
-$('studlist').onclick=e=>{const b=e.target.closest('[data-del]');if(!b)return;const c=cur(),id=b.dataset.del;c.students=c.students.filter(s=>s.id!==id);const k=seatOf(c,id);if(k)delete c.seats[k];clean(c);commit();};
-$('btnRandom').onclick=()=>{const c=cur();const prev={seats:{...c.seats},locked:[...c.locked]};if(randomize(c)){c.prevSeats=prev;pickKey=null;commit(true);const nr=c.rules.apart.length+c.rules.front.length,br=c.lastBreaks||0;toast(br?`Gemischt. ${br===1?'Eine Regel ließ':br+' Regeln ließen'} sich nicht einhalten (rot markiert).`:(nr?`Gemischt. Alle ${nr} Regeln eingehalten.`:(c.locked.length?`Gemischt. ${c.locked.length} fixierte Plätze blieben.`:'Neu gemischt.')));}else toast('Zu wenige freie Plätze.');};
+  if(!names.length){toast('Keine Namen gefunden.');return;}names.forEach(n=>c.students.push(mkStudent(n)));$('newNames').value='';commit();toast(`${names.length} Namen hinzugefügt.`);};
+$('studlist').onclick=e=>{const gb=e.target.closest('[data-g]');if(gb){const st=student(cur(),gb.dataset.g);if(st){st.g=!st.g?'m':st.g==='m'?'w':undefined;if(!st.g)delete st.g;commit();}return;}const b=e.target.closest('[data-del]');if(!b)return;const c=cur(),id=b.dataset.del;c.students=c.students.filter(s=>s.id!==id);const k=seatOf(c,id);if(k)delete c.seats[k];clean(c);commit();};
+$('btnRandom').onclick=()=>{const c=cur();const prev={seats:{...c.seats},locked:[...c.locked]};if(randomize(c)){c.prevSeats=prev;pickKey=null;commit(true);const nr=c.rules.apart.length+c.rules.front.length+(c.rules.alt?1:0),br=c.lastBreaks||0,ab=c.rules.alt?(c.lastAlt||0):0,am=c.rules.alt?altMin(c,ruleGeo(c)):0;toast(ab>am?`Gemischt. m/w im Wechsel ging nicht überall (${ab}× gleiche nebeneinander).`:br?`Gemischt. ${br===1?'Eine Regel ließ':br+' Regeln ließen'} sich nicht einhalten (rot markiert).`:(nr?(nr===1?'Gemischt. Die Regel wurde eingehalten.':`Gemischt. Alle ${nr} Regeln eingehalten.`):(c.locked.length?`Gemischt. ${c.locked.length} fixierte Plätze blieben.`:'Neu gemischt.')));}else toast('Zu wenige freie Plätze.');};
 let cRaf=0;
 $('customPanel').addEventListener('input',e=>{const el=e.target.closest('[data-c]');if(!el)return;S.custom=Object.assign({},CC(),{[el.dataset.c]:el.value});cancelAnimationFrame(cRaf);cRaf=requestAnimationFrame(()=>{save();renderRoom();});});
 $('customPanel').addEventListener('change',e=>{if(e.target.closest('[data-c]')){save();renderRoom();}});
@@ -1683,15 +1754,18 @@ function importText(txt){
   if(n){S.current=first;$('importBox').value='';sel.clear();pickKey=null;commit();toast(`${n} Klasse${n>1?'n':''} eingelesen.`);}else toast('In der Sicherung wurden keine Klassen gefunden.');
 }
 $('btnImport').onclick=()=>importText($('importBox').value);
+const GX=/\s*\((m|w)\)\s*$/i;
+function mkStudent(n){n=String(n).trim();let g;const m=n.match(GX);if(m){g=m[1].toLowerCase();n=n.replace(GX,'').trim();}else{const w=n.match(/\s+(männlich|weiblich)$/i);if(w){g=w[1][0].toLowerCase()==='m'?'m':'w';n=n.slice(0,w.index).trim();}}const s={id:uid(),name:n};if(g)s.g=g;return s;}
+const gOf=v=>{v=String(v||'').trim().toLowerCase();return v==='m'||v==='männlich'||v==='junge'?'m':(v==='w'||v==='weiblich'||v==='mädchen'?'w':'');};
 function parseNames(txt){
   const lines=txt.replace(/^\uFEFF/,'').split(/\r?\n/).map(l=>l.trim()).filter(Boolean);if(!lines.length)return[];
   const sep=[';','\t',','].find(d=>lines[0].includes(d));
   let rows=lines.map(l=>sep?l.split(sep).map(x=>x.replace(/^"|"$/g,'').trim()):[l]);
   let swap=false;const h=rows[0].join(' ').toLowerCase();
   if(/name|schüler|schueler/.test(h)){swap=/nachname/.test((rows[0][0]||'').toLowerCase())&&/vorname/.test((rows[0][1]||'').toLowerCase());rows=rows.slice(1);}
-  return rows.map(r=>{const c=r.filter(Boolean);if(c.length>=2)return swap?c[1]+' '+c[0]:c[0]+' '+c[1];return c[0]||'';}).filter(Boolean);
+  return rows.map(r=>{let c=r.filter(Boolean);const gi=c.findIndex(x=>gOf(x));const g=gi>=0?gOf(c[gi]):'';if(gi>=0)c.splice(gi,1);let n=c.length>=2?(swap?c[1]+' '+c[0]:c[0]+' '+c[1]):(c[0]||'');return n?(g?n+' ('+g+')':n):'';}).filter(Boolean);
 }
-$('csvNames').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const names=parseNames(r.result);if(!names.length){toast('In der Datei wurden keine Namen gefunden.');return;}const c=cur();names.forEach(n=>c.students.push({id:uid(),name:n}));commit();toast(`${names.length} Namen aus der Datei hinzugefügt.`);};r.readAsText(f);e.target.value='';};
+$('csvNames').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const names=parseNames(r.result);if(!names.length){toast('In der Datei wurden keine Namen gefunden.');return;}const c=cur();names.forEach(n=>c.students.push(mkStudent(n)));commit();toast(`${names.length} Namen aus der Datei hinzugefügt.`);};r.readAsText(f);e.target.value='';};
 function tableNumbers(c){const ts=[...c.tables].sort((a,b)=>Math.round(a.y/60)-Math.round(b.y/60)||a.x-b.x),m={};ts.forEach((t,i)=>m[t.id]=i+1);return m;}
 function csvText(){
   const c=cur(),nums=tableNumbers(c),gm={};c.groups.forEach((g,i)=>g.forEach(id=>gm[id]=i+1));
