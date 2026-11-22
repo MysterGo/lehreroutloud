@@ -30,10 +30,33 @@ a.tile:hover{transform:translateY(-2px);border-color:#b9c9e4;box-shadow:0 10px 2
 footer{margin-top:40px;color:var(--muted);font-size:13px}
 
 body.home{background:#e7ebf0;min-height:100vh}
+/* Bild 1824x862 (Verhaeltnis 2.116). --sw/--sh = gerenderte Bildgroesse bei "cover" */
+.home{--sw:max(100vw,211.6vh);--sh:max(100vh,47.26vw)}
 .roombg{position:fixed;inset:0;z-index:-2;background:#e7ebf0 url(bilder/klassenzimmer.webp) center/cover no-repeat}
 .home header{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
-.home .wrap{padding-block:calc(max(54vh,50vh + 1.9vw) + 3vh) 56px}
-.home .tile{box-shadow:0 18px 36px -20px rgba(20,35,70,.6);border-color:rgba(255,255,255,.9);background:rgba(255,255,255,.94)}
+.home .wrap{max-width:none;padding:0}
+/* Tafel-Innenflaeche im Bild: x 570-1190, y 234-474 */
+.home .board{position:fixed;margin:0;
+  left:calc(50vw + var(--sw)*(570/1824 - .5));top:calc(50vh + var(--sh)*(234/862 - .5));
+  width:calc(var(--sw)*620/1824);height:calc(var(--sh)*240/862);
+  container-type:size;display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--sw)*.0085);padding:calc(var(--sw)*.0095)}
+.home .tile>*{flex-shrink:0}
+.home .tile{gap:1.2cqw;padding:2.4cqw 2.4cqw 2.2cqw;border-radius:1.8cqw;background:#fff;border:1px solid #dfe5ec;box-shadow:0 1.2cqw 2.6cqw -1.6cqw rgba(20,35,70,.45);min-height:0;overflow:hidden}
+.home .ico{width:6.6cqw;height:6.6cqw;border-radius:1.6cqw}
+.home .ico svg{width:3.8cqw;height:3.8cqw}
+.home .tile h2{font-size:3.5cqw;line-height:1.1}
+.home .tile p{font-size:1.95cqw;line-height:1.35}
+.home .go{font-size:2.15cqw}
+@container (max-width:470px){.home .tile p{display:none}.home .tile h2{font-size:4.2cqw}.home .go{font-size:2.8cqw}}
+/* Hochkant / kleine Bildschirme: Tafel als eigenes Element */
+@media (max-width:700px),(max-height:480px),(max-aspect-ratio:1/1){
+  .roombg{background-position:center top}
+  .home .board{position:static;width:auto;height:auto;container-type:normal;grid-template-columns:1fr;gap:12px;padding:16px;
+    margin:max(22vh,120px) auto 32px;max-width:min(92vw,520px);background:#fbfcfd;border:9px solid #23262c;border-radius:10px;box-shadow:0 24px 50px -24px rgba(20,35,70,.7)}
+  .home .tile{gap:8px;padding:16px;border-radius:14px;box-shadow:none}
+  .home .ico{width:44px;height:44px;border-radius:12px}.home .ico svg{width:24px;height:24px}
+  .home .tile h2{font-size:20px}.home .tile p{font-size:14px;display:block}.home .go{font-size:15px}
+}
 </style>
 </head>
 <body class="home">
@@ -43,7 +66,7 @@ body.home{background:#e7ebf0;min-height:100vh}
     <h1>Schulprojekte</h1>
     <p>Werkzeuge, Spiele und Lernangebote für Schule und Unterricht. Alles läuft direkt im Browser, ohne Anmeldung.</p>
   </header>
-  <main class="grid">
+  <main class="grid board">
     <a class="tile cat" href="tools/" style="--c:var(--t1);--cs:var(--t1s)">
       <span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3.5 17.3a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.2-5.4l-2.4 2.4-2.3-.4-.4-2.3z"/></svg></span>
       <h2>Tools</h2>
